@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as contactAction from './actions/contactAction';
 import style from './mystyle.module.css'
+import contactReducer from './reducers/contactReducer';
 
 class App extends Component {
 
@@ -11,23 +12,33 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
      
     this.state = {
-      name: ''
+      name: '',
+      phonenumber: ''
     }
   }
 
-  handleChange(e){
-    this.setState({
-      name: e.target.value
-    })
+  handleChange(e, type){
+    if(type === 'name'){
+      this.setState({
+        name:e.target.value
+      })
+    }
+    else{
+      this.setState({
+        phonenumber:e.target.value
+      })
+    }
   }
 
   handleSubmit(e){
     e.preventDefault();
     let contact = {
-      name: this.state.name
+      name: this.state.name,
+      phonenumber: this.state.phonenumber
     }
     this.setState({
-      name: ''
+      name: '',
+      phonenumber: ''
     });
     this.props.createContact(contact);
   }
@@ -36,9 +47,12 @@ class App extends Component {
     return (
       <div className={style.Contact}>
         <div className="col-md-10">
-          <li key={index} className={style.contactName}>
+          <p key={index} className={style.contactName}>
             {data.name}
-          </li>
+          </p>
+          <p>
+            {data.phonenumber}
+          </p>
         </div>
         <div className={style.Remove}>
           <button onClick={(e) => this.deleteContact(e, index)} className={style.btnDanger}>
@@ -63,8 +77,16 @@ class App extends Component {
         <div className={style.form}>
           <h3 className={style.header2}>Add Contact Form</h3>
           <form className={style.submitForm} onSubmit={this.handleSubmit}>
-            <p>Name</p>
-            <input type="text" onChange={this.handleChange} className="form-control" value={this.state.name} placeholder="Enter Name"/><br />
+            <label>
+              Name
+              <br/>
+              <input type="text" onChange={event => this.handleChange(event,'name')} value={this.state.name} placeholder="Enter Name"/><br/>
+            </label>
+            <label>
+              Phone Number
+              <br/>
+              <input type="tel" onChange={event => this.handleChange(event,'phone')} value={this.state.phonenumber} placeholder="Enter Phone Number"/><br />
+            </label>
             <input type="submit" className={style.btnSuccess} value="ADD"/>
           </form>
           <hr />
