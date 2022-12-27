@@ -1,0 +1,66 @@
+.btnDanger{
+    height: 30px;
+    width: 80px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 0;
+    background-color: crimson;
+}
+
+.btnSuccess{
+    height: 30px;
+    width: 50px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: chartreuse;
+    border: 0;
+
+}
+
+p{
+    margin:2px;
+}
+
+body{
+    background-color: lightblue;
+}
+
+.contactName{
+    font-weight: bold;
+    justify-content: center;
+}
+
+.Contact {
+    border: 1px solid black;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    display: inline-grid;
+    justify-content: center;
+}
+
+.Remove{
+    display: flex;
+    
+}
+
+.listGroup{
+    display:flex;
+    flex-direction: column;
+}
+
+.header2{
+    text-align: center;
+}
+
+.header{
+    text-align:center;
+}
+
+.form{
+    display: block;
+}
+
+.submitForm {
+    margin-left: 45%;
+}
